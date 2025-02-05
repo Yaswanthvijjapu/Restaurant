@@ -9,7 +9,7 @@ const RestaurantsDetail = () => {
     const fetchRestaurant = async () => {
       try {
         console.log("Fetching restaurant details for ID:", id);
-        const response = await fetch(`http://localhost:5000/api/restaurants/${id}`);
+        const response = await fetch(`https://restaurant-production-06c2.up.railway.app/api/restaurants/${id}`);
         const data = await response.json();
 
         console.log("API Response:", data);

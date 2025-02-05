@@ -23,7 +23,7 @@ const RestaurantsList = () => {
     const fetchRestaurants = async () => {
       setLoading(true); // Set loading state to true
       try {
-        const url = `http://localhost:5000/api/restaurants?page=${page}&limit=16`;
+        const url = `https://restaurant-production-06c2.up.railway.app/api/restaurants?page=${page}&limit=16`;
         const response = await fetch(url);
         if (!response.ok) {
           throw new Error("Failed to fetch data");

@@ -14,7 +14,7 @@ const Location = () => {
     setLoading(true);
     try {
       const response = await fetch(
-        `http://localhost:5000/api/restaurants/location?lat=${lat}&lng=${lng}&radius=${radius}`
+        `https://restaurant-production-06c2.up.railway.app/api/restaurants/location?lat=${lat}&lng=${lng}&radius=${radius}`
       );
       const data = await response.json();
 
