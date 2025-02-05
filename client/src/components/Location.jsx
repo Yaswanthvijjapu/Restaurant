@@ -7,10 +7,10 @@ const Location = () => {
   const [longitude, setLongitude] = useState(null);
   const [restaurants, setRestaurants] = useState([]);
   const [loading, setLoading] = useState(false);
-  const [radius,setRadius] = useState(3);
+  const [radius, setRadius] = useState(); 
   const [searchParams] = useSearchParams();
 
-  const fetchRestaurants = useCallback(async (lat, lng) => {
+  const fetchRestaurants = useCallback(async (lat, lng, radius) => {
     setLoading(true);
     try {
       const response = await fetch(
@@ -18,17 +18,17 @@ const Location = () => {
       );
       const data = await response.json();
 
-      console.log("API Response:", JSON.stringify(data, null, 2)); // Debugging
+      console.log("API Response:", JSON.stringify(data, null, 2)); 
 
       if (Array.isArray(data)) {
         setRestaurants(data);
       } else {
         console.error("Invalid data format:", data);
-        setRestaurants([]); // Ensure state is cleared if data is incorrect
+        setRestaurants([]); 
       }
     } catch (error) {
       console.error("Error fetching data:", error);
-      setRestaurants([]); // Clear the restaurants state on error
+      setRestaurants([]); 
     } finally {
       setLoading(false);
     }
@@ -37,14 +37,19 @@ const Location = () => {
   useEffect(() => {
     const lat = searchParams.get("lat");
     const lng = searchParams.get("lng");
+    const radiusFromParams = searchParams.get("radius");
+
     if (lat && lng) {
       setLatitude(lat);
       setLongitude(lng);
-      fetchRestaurants(lat, lng);
+      if (radiusFromParams) {
+        setRadius(radiusFromParams); // Set radius from URL if available
+      }
+      fetchRestaurants(lat, lng, radiusFromParams || radius); // Use radius from URL or default
     } else {
       console.error("Latitude and Longitude not provided");
     }
-  }, [searchParams, fetchRestaurants]);
+  }, [searchParams, fetchRestaurants, radius]);
 
   if (!latitude || !longitude) {
     return (
@@ -147,7 +152,7 @@ const Location = () => {
               animate={{ opacity: 1 }}
               transition={{ duration: 0.5 }}
             >
-              No restaurants found within 3km.
+              No restaurants found within {radius} km.
             </motion.div>
           )}
         </motion.div>

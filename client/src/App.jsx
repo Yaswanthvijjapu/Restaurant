@@ -3,7 +3,6 @@ import Home from "./components/Home";
 import RestaurantsList from "./components/RestaurantsList";
 import RestaurantsDetail from "./components/RestaurantsDetail";
 import Location from "./components/Location";
-import Geolocation from "./components/Geolocation";
 
 const App = () => {
   return (
@@ -13,7 +12,6 @@ const App = () => {
         <Route path="/restaurants" element={<RestaurantsList />} />
         <Route path="/restaurant/:id" element={<RestaurantsDetail />} />
         <Route path="restaurants/location" element={<Location />} />
-        <Route path="/restaurants/geolocation" element = {<Geolocation/>}/>
       </Routes>
     </Router>
   );

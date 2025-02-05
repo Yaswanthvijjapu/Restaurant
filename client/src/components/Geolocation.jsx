@@ -7,14 +7,14 @@ const Geolocation = () => {
   const [longitude, setLongitude] = useState(null);
   const [restaurants, setRestaurants] = useState([]);
   const [loading, setLoading] = useState(false);
-  const [radius, setRadius] = useState(3);
+  const [radius, setRadius] = useState(100);
   const [searchParams] = useSearchParams();
 
   const fetchRestaurants = useCallback(async (lat, lng) => {
     setLoading(true);
     try {
       const response = await fetch(
-        `http://localhost:5000/api/restaurants/geolocation?lat=${lat}&lng=${lng}&radius=${radius}`
+        `https://restaurant-production-06c2.up.railway.app/api/restaurants/geolocation?lat=${lat}&lng=${lng}&radius=${radius}`
       );
       const data = await response.json();
 
@@ -63,6 +63,13 @@ const Geolocation = () => {
       }
     }
   }, [searchParams, fetchRestaurants]);
+
+  useEffect(() => {
+    // Fetch restaurants again when latitude or longitude changes
+    if (latitude && longitude) {
+      fetchRestaurants(latitude, longitude);
+    }
+  }, [latitude, longitude, fetchRestaurants]);
 
   if (!latitude || !longitude) {
     return (

@@ -6,7 +6,7 @@ const Home = () => {
   const [searchQuery, setSearchQuery] = useState("");
   const [latitude, setLatitude] = useState("");
   const [longitude, setLongitude] = useState("");
-  const [radius, setRadius] = useState(3);
+  const [radius, setRadius] = useState();
   const navigate = useNavigate();
 
   const handleSearch = (event) => {
@@ -32,7 +32,7 @@ const Home = () => {
           const lng = position.coords.longitude;
           setLatitude(lat);
           setLongitude(lng);
-          navigate(`/restaurants/geolocation?lat=${lat}&lng=${lng}&radius=${radius}`);
+          navigate(`/restaurants/location?lat=${lat}&lng=${lng}&radius=${radius}`);
         },
         () => {
           alert("Unable to retrieve your location. Please enable location services.");
@@ -52,15 +52,15 @@ const Home = () => {
         <p className="text-sm sm:text-lg text-gray-700 mt-4">Discover the best places to eat</p>
       </div>
 
-      <div className="w-full max-w-md mt-6">
+      <div className="w-full max-w-md mt-6 ml-18">
         <input
           type="text"
           placeholder="Search Restaurants..."
           value={searchQuery}
           onChange={(e) => setSearchQuery(e.target.value)}
-          className="w-full p-3 rounded-lg bg-white bg-opacity-80 text-gray-800 focus:outline-none focus:ring-4 focus:ring-blue-500 shadow-md"
+          className="w-95 p-3 rounded-lg bg-white bg-opacity-80 text-gray-800 focus:outline-none focus:ring-4 focus:ring-blue-500 shadow-md"
         />
-        <div className="flex flex-col sm:flex-row sm:space-x-4 mt-4">
+        <div className="flex flex-col sm:flex-row sm:space-x-6 mt-4">
           <motion.button
             onClick={handleSearch}
             whileHover={{ scale: 1.05 }}
