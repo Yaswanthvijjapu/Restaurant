@@ -1,44 +1,34 @@
 import { Link } from "react-router-dom";
+import { FaHome, FaUtensils } from "react-icons/fa";
 
 const Navbar = () => {
   return (
-    <nav className="bg-white/10 backdrop-blur-md border-b border-white/10 p-4 text-white shadow-xl fixed w-full z-50">
-      <div className="container mx-auto flex justify-between items-center">
-        {/* Logo and App Name */}
-        <Link
-          to="/"
-          className="text-3xl font-bold hover:text-yellow-400 transition-all duration-300 transform hover:scale-105"
-        >
-          <span className="font-serif bg-gradient-to-r from-teal-400 to-blue-500 bg-clip-text text-transparent">
+    <nav className="bg-blue-500 p-4 text-white shadow-md fixed w-full z-50">
+      <div className="container mx-auto flex justify-between items-center px-4">
+        
+        {/* Logo and Name (Restaurant Finder) */}
+        <Link to="/" className="flex items-center space-x-2 font-poppins">
+          <span className="text-3xl font-bold text-white font-poppins hidden md:block">
             Restaurant Finder
           </span>
         </Link>
 
         {/* Navigation Links */}
-        <div className="hidden md:flex space-x-6">
+        <div className="flex space-x-6 font-roboto">
           <Link
             to="/"
-            className="text-lg font-semibold hover:text-yellow-400 transition-all duration-300 transform hover:scale-105"
+            className="text-lg font-semibold flex items-center space-x-2 hover:text-yellow-400 transition-all duration-300"
           >
-            <span className="font-serif bg-gradient-to-r from-teal-400 to-blue-500 bg-clip-text text-transparent">
-              Home
-            </span>
+            <FaHome className="text-2xl text-white" />
+            <span className="hidden md:inline">Home</span>
           </Link>
           <Link
             to="/restaurants"
-            className="text-lg font-semibold hover:text-yellow-400 transition-all duration-300 transform hover:scale-105"
+            className="text-lg font-semibold flex items-center space-x-2 hover:text-yellow-400 transition-all duration-300"
           >
-            <span className="font-serif bg-gradient-to-r from-teal-400 to-blue-500 bg-clip-text text-transparent">
-              Restaurants
-            </span>
+            <FaUtensils className="text-2xl text-white" />
+            <span className="hidden md:inline">Restaurants</span>
           </Link>
-        </div>
-
-        {/* Mobile Menu Icon */}
-        <div className="md:hidden flex items-center space-x-4">
-          <button className="text-xl hover:text-yellow-400 transition-all duration-300 transform hover:scale-110">
-            <i className="fas fa-bars"></i>
-          </button>
         </div>
       </div>
     </nav>
