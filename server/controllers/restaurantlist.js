@@ -2,18 +2,17 @@ const  client = require('../db')
 
 const allrestaurants = async (req, res) => {
     try {
-      const db = client.db("restaurant"); // Your database name
-      const collection = db.collection("restaurantList"); // Your collection name
+      const db = client.db("restaurant"); 
+      const collection = db.collection("restaurantList"); 
   
-      const page = parseInt(req.query.page) || 1; // Default to page 1
-      const limit = parseInt(req.query.limit) || 10; // Default limit 10
+      const page = parseInt(req.query.page) || 1; 
+      const limit = parseInt(req.query.limit) || 10; 
   
       const skip = (page - 1) * limit;
   
-      // Fetch paginated data
       const restaurants = await collection
         .aggregate([
-          { $unwind: "$restaurants" }, // Unwind the restaurants array
+          { $unwind: "$restaurants" }, 
           { $skip: skip },
           { $limit: limit }
         ])
@@ -31,7 +30,7 @@ const allrestaurants = async (req, res) => {
         limit,
         total,
         totalPages,
-        restaurants: restaurants.map(r => r.restaurants) // Extract restaurant data
+        restaurants: restaurants.map(r => r.restaurants) 
       });
     } catch (error) {
       console.error("Error fetching restaurants:", error);

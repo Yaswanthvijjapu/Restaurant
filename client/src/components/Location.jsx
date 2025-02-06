@@ -1,6 +1,8 @@
 import { useState, useEffect, useCallback } from "react";
 import { useSearchParams } from "react-router-dom";
 import { motion } from "framer-motion";
+import { Link } from "react-router-dom";
+
 
 const Location = () => {
   const [latitude, setLatitude] = useState(null);
@@ -43,9 +45,9 @@ const Location = () => {
       setLatitude(lat);
       setLongitude(lng);
       if (radiusFromParams) {
-        setRadius(radiusFromParams); // Set radius from URL if available
+        setRadius(radiusFromParams); 
       }
-      fetchRestaurants(lat, lng, radiusFromParams || radius); // Use radius from URL or default
+      fetchRestaurants(lat, lng, radiusFromParams || radius); 
     } else {
       console.error("Latitude and Longitude not provided");
     }
@@ -82,7 +84,7 @@ const Location = () => {
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6 }}
       >
-        Restaurants Around You 🌎
+        Restaurants Around You 
       </motion.h1>
 
       {loading ? (
@@ -141,6 +143,10 @@ const Location = () => {
                         {rest?.user_rating?.aggregate_rating || "N/A"}
                       </span>
                     </div>
+                    <Link to={`/restaurant/${restaurant.restaurant?.id || ""}`}
+                      className={`mt-4 inline-block text-blue-500 hover:text-blue-700 font-semibold transition-colors duration-300 text-sm sm:text-base ${rest?.id ? "" : "pointer-events-none opacity-50"}`}>
+                      View Details →
+                    </Link>
                   </div>
                 </motion.div>
               );

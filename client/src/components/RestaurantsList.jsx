@@ -2,16 +2,14 @@ import { useEffect, useState, useMemo } from "react";
 import { Link, useLocation } from "react-router-dom";
 
 const RestaurantsList = () => {
-  const [restaurants, setRestaurants] = useState([]); // Stores restaurants
-  const [page, setPage] = useState(1); // Page number
-  const [totalPages, setTotalPages] = useState(1); // Total pages from API
+  const [restaurants, setRestaurants] = useState([]); 
+  const [page, setPage] = useState(1); 
+  const [totalPages, setTotalPages] = useState(1); 
   const location = useLocation();
-  const [loading, setLoading] = useState(true); // Loading state
+  const [loading, setLoading] = useState(true); 
 
-  // Extract search query from URL parameters
   const searchQuery = new URLSearchParams(location.search).get("search") || "";
 
-  // Memoize filtered restaurants to prevent re-filtering on every render
   const filteredRestaurants = useMemo(() => {
     if (!searchQuery) return restaurants;
     return restaurants.filter((restaurant) =>
@@ -21,7 +19,7 @@ const RestaurantsList = () => {
 
   useEffect(() => {
     const fetchRestaurants = async () => {
-      setLoading(true); // Set loading state to true
+      setLoading(true); 
       try {
         const url = `https://restaurant-production-06c2.up.railway.app/api/restaurants?page=${page}&limit=16`;
         const response = await fetch(url);
@@ -32,7 +30,6 @@ const RestaurantsList = () => {
         const data = await response.json();
         let restaurantsData = [];
 
-        // Loop through the response to extract restaurants
         for (let i = 0; i < data.restaurants.length; i++) {
           if (data.restaurants[i]?.restaurant) {
             restaurantsData.push(data.restaurants[i].restaurant);
@@ -44,14 +41,13 @@ const RestaurantsList = () => {
       } catch (error) {
         console.error("Error fetching data:", error);
       } finally {
-        setLoading(false); // Set loading state to false once data is fetched
+        setLoading(false); 
       }
     };
 
     fetchRestaurants();
-  }, [page]); // ✅ Updates when page changes, keeping search independent
+  }, [page]); 
 
-  // Function to determine rating color
   const getRatingColor = (rating) => {
     if (rating >= 4) return "bg-green-500";
     if (rating >= 3) return "bg-yellow-500";

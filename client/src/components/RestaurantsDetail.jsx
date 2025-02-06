@@ -88,9 +88,9 @@ const RestaurantsDetail = () => {
 
         {/* Book Food Button */}
         <div className="mt-6 text-center">
-          <button className="px-6 py-3 bg-green-600 text-white font-semibold rounded-lg hover:bg-green-700 transition">
+        <a href={restaurant.url}><button className="px-6 py-3 bg-green-600 text-white font-semibold rounded-lg hover:bg-green-700 transition">
             🍽 Book Food
-          </button>
+          </button></a>
         </div>
       </div>
     </div>
