@@ -32,7 +32,7 @@ const Home = () => {
           const lng = position.coords.longitude;
           setLatitude(lat);
           setLongitude(lng);
-          navigate(`/restaurants/location?lat=${lat}&lng=${lng}&radius=${radius}`);
+          navigate(`/restaurants/location?lat=${lat}&lng=${lng}&radius=${3}`);
         },
         () => {
           alert("Unable to retrieve your location. Please enable location services.");
