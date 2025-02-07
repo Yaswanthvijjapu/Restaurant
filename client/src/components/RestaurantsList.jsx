@@ -105,23 +105,23 @@ const RestaurantsList = () => {
       </div>
 
       {/* Pagination Controls */}
-      <div className="flex flex-col sm:flex-row justify-center items-center mt-8 space-y-4 sm:space-y-0 sm:space-x-6">
+      <div className="flex flex-wrap justify-center items-center mt-8 gap-4">
         <button
           onClick={() => setPage(prev => Math.max(prev - 1, 1))}
           disabled={page === 1}
-          className="px-4 sm:px-6 py-2 sm:py-3 bg-gradient-to-r from-blue-400 to-teal-500 text-white rounded-lg hover:scale-105 transition-transform duration-300 disabled:opacity-50 disabled:cursor-not-allowed"
+          className="px-4 py-2 bg-gradient-to-r from-blue-400 to-teal-500 text-white rounded-lg hover:scale-105 transition-transform duration-300 disabled:opacity-50 disabled:cursor-not-allowed"
         >
           Previous
         </button>
 
-        <span className="px-4 sm:px-6 py-2 sm:py-3 bg-gradient-to-r from-yellow-200 to-orange-200 text-gray-800 rounded-lg text-sm sm:text-base">
+        <span className="px-4 py-2 bg-gradient-to-r from-yellow-200 to-orange-200 text-gray-800 rounded-lg text-sm sm:text-base">
           Page {page} of {totalPages}
         </span>
 
         <button
           onClick={() => setPage(prev => Math.min(prev + 1, totalPages))}
           disabled={page === totalPages}
-          className="px-4 sm:px-6 py-2 sm:py-3 bg-gradient-to-r from-blue-400 to-teal-500 text-white rounded-lg hover:scale-105 transition-transform duration-300 disabled:opacity-50 disabled:cursor-not-allowed"
+          className="px-4 py-2 bg-gradient-to-r from-blue-400 to-teal-500 text-white rounded-lg hover:scale-105 transition-transform duration-300 disabled:opacity-50 disabled:cursor-not-allowed"
         >
           Next
         </button>
