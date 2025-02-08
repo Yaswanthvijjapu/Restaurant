@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+import Navbar from "./Navbar";
 
 const RestaurantsDetail = () => {
   const { id } = useParams();
@@ -40,7 +41,9 @@ const RestaurantsDetail = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50"> {/* Added light background color here */}
+    <>
+    <Navbar/>
+    <div className="min-h-screen mt bg-gray-50"> {/* Added light background color here */}
       <div className="max-w-4xl mx-auto p-6 bg-white shadow-lg rounded-lg">
         {/* Restaurant Image */}
         <img
@@ -94,6 +97,7 @@ const RestaurantsDetail = () => {
         </div>
       </div>
     </div>
+    </>
   );
 };
 

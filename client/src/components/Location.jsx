@@ -2,7 +2,7 @@ import { useState, useEffect, useCallback } from "react";
 import { useSearchParams } from "react-router-dom";
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
-
+import Navbar from "./Navbar";
 
 const Location = () => {
   const [latitude, setLatitude] = useState(null);
@@ -77,6 +77,8 @@ const Location = () => {
   }
 
   return (
+    <>
+    <Navbar/>
     <div className="container mx-auto p-4">
       <motion.h1
         className="text-4xl font-bold mb-8 text-center text-purple-600"
@@ -164,6 +166,8 @@ const Location = () => {
         </motion.div>
       )}
     </div>
+    </>
+
   );
 };
 

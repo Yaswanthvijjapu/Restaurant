@@ -1,5 +1,6 @@
 import { useEffect, useState, useMemo } from "react";
 import { Link, useLocation } from "react-router-dom";
+import Navbar from "./Navbar";
 
 const RestaurantsList = () => {
   const [restaurants, setRestaurants] = useState([]); 
@@ -56,6 +57,8 @@ const RestaurantsList = () => {
   };
 
   return (
+    <>
+    <Navbar/>
     <div className="container mx-auto p-4 bg-gradient-to-r from-blue-50 to-green-50">
       <h1 className="text-3xl font-bold mb-6 text-center text-gray-800"><span className=" font-serif">Restaurant List</span></h1>
 
@@ -127,6 +130,7 @@ const RestaurantsList = () => {
         </button>
       </div>
     </div>
+    </>
   );
 };
 

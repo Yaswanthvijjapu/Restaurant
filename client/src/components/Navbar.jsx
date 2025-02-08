@@ -3,7 +3,7 @@ import { FaHome, FaUtensils } from "react-icons/fa";
 
 const Navbar = () => {
   return (
-    <nav className="bg-blue-500 p-4 text-white shadow-md fixed w-full z-50">
+    <nav className="bg-blue-400 p-4 text-white shadow-md fixed w-full z-50">
       <div className="container mx-auto flex justify-between items-center px-4">
         
         {/* Logo and Name (Restaurant Finder) */}

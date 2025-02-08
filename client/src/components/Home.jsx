@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
+import Navbar from "./Navbar";
 
 const Home = () => {
   const [searchType, setSearchType] = useState("name");
@@ -8,15 +9,23 @@ const Home = () => {
   const [latitude, setLatitude] = useState("");
   const [longitude, setLongitude] = useState("");
   const [radius, setRadius] = useState("");
+  const [imageFile, setImageFile] = useState(null);
   const navigate = useNavigate();
+
+  const handleFileChange = (e) => {
+    const file = e.target.files[0];
+    if (file) {
+      setImageFile(file); // Correctly handle image file
+    }
+  };
 
   const handleSearch = () => {
     if (searchType === "name" && inputValue.trim()) {
       navigate(`/namesearch?search=${inputValue.trim()}`);
     } else if (searchType === "location" && latitude.trim() && longitude.trim() && radius.trim()) {
       navigate(`/restaurants/location?lat=${latitude}&lng=${longitude}&radius=${radius}`);
-    } else if (searchType === "image" && inputValue) {
-      navigate(`/imagesearch?image=${inputValue}`);
+    } else if (searchType === "image" && imageFile) {
+      navigate("/imagesearch", { state: { image: imageFile } }); // Pass the image file correctly
     } else {
       alert("Please enter valid input!");
     }
@@ -42,6 +51,8 @@ const Home = () => {
   };
 
   return (
+    <>
+    <Navbar/>
     <div className="min-h-screen flex flex-col items-center justify-center bg-gradient-to-br from-blue-200 via-purple-100 to-pink-100 p-6">
       <div className="text-center">
         <h2 className="text-3xl sm:text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-purple-600 to-blue-600">
@@ -91,8 +102,8 @@ const Home = () => {
           <input
             type={searchType === "image" ? "file" : "text"}
             placeholder={searchType === "name" ? "Search Restaurants by Name..." : "Upload an Image"}
-            value={searchType !== "image" ? inputValue : undefined}
-            onChange={(e) => setInputValue(e.target.value)}
+            value={searchType !== "image" ? inputValue : ""}
+            onChange={(e) => searchType === "image" ? handleFileChange(e) : setInputValue(e.target.value)}
             className="w-full p-3 rounded-lg bg-white bg-opacity-80 text-gray-800 focus:outline-none focus:ring-4 focus:ring-blue-500 shadow-md"
           />
         )}
@@ -116,6 +127,8 @@ const Home = () => {
         </motion.button>
       </div>
     </div>
+    </>
+
   );
 };
 
