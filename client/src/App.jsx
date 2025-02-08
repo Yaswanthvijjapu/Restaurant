@@ -3,6 +3,7 @@ import Home from "./components/Home";
 import RestaurantsList from "./components/RestaurantsList";
 import RestaurantsDetail from "./components/RestaurantsDetail";
 import Location from "./components/Location";
+import Namesearch from "./components/Namesearch";
 
 const App = () => {
   return (
@@ -12,6 +13,7 @@ const App = () => {
         <Route path="/restaurants" element={<RestaurantsList />} />
         <Route path="/restaurant/:id" element={<RestaurantsDetail />} />
         <Route path="restaurants/location" element={<Location />} />
+        <Route path="/namesearch" element={<Namesearch />} />
       </Routes>
     </Router>
   );
