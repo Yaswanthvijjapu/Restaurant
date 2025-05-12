@@ -21,7 +21,7 @@ const RestaurantsList = () => {
     const fetchRestaurants = async () => {
       setLoading(true); 
       try {
-        const url = `https://restaurant-production-06c2.up.railway.app/api/restaurants?page=${page}&limit=16`;
+        const url = `https://restaurant-lake-phi.vercel.app/api/restaurants?page=${page}&limit=16`;
         const response = await fetch(url);
         if (!response.ok) {
           throw new Error("Failed to fetch data");

@@ -28,7 +28,7 @@ const ImageSearch = () => {
         const formData = new FormData();
         formData.append("image", image);
 
-        const response = await fetch("https://restaurant-production-06c2.up.railway.app/restaurants/imgsearch", {
+        const response = await fetch("https://restaurant-lake-phi.vercel.app/restaurants/imgsearch", {
           method: "POST",
           body: formData,
         });

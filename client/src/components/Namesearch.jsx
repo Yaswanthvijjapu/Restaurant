@@ -24,7 +24,7 @@ const Namesearch = () => {
     
       try {
         const response = await fetch(
-          `https://restaurant-production-06c2.up.railway.app/restaurants/?name=${encodeURIComponent(restaurantName)}`
+          `https://restaurant-lake-phi.vercel.app/restaurants/?name=${encodeURIComponent(restaurantName)}`
         );
         console.log("API request sent successfully.");
     
